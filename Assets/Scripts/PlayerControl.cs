@@ -215,6 +215,18 @@ public class PlayerControl : MonoBehaviour
                     isSpecialCooldown = true;
                     imageSpecialSkill.fillAmount = 0;
                     return;
+                case "Whip":
+                    isSpecialCooldown = true;
+                    imageSpecialSkill.fillAmount = 0;
+                    return;
+                case "Invulnerability":
+                    isSpecialCooldown = true;
+                    imageSpecialSkill.fillAmount = 0;
+                    return;
+                case "Masking":
+                    isSpecialCooldown = true;
+                    imageSpecialSkill.fillAmount = 0;
+                    return;
                 default:
                     return;
             }
