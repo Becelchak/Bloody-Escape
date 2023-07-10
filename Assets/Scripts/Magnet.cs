@@ -28,7 +28,7 @@ public class Magnet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Front") return;
+        if (collision.gameObject.name == "Front" || collision.tag == "EditorOnly") return;
         needMagnet = true;
         objectMagnet = collision.gameObject;
     }

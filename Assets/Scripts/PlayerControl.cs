@@ -26,7 +26,6 @@ public class PlayerControl : MonoBehaviour
     private Rigidbody2D controller;
 
     // Fight
-    private BoxCollider2D front;
     private GameObject enemy;
     private bool eableEatEnemy;
     private static bool immortal;
@@ -49,7 +48,7 @@ public class PlayerControl : MonoBehaviour
     private bool isCooldown;
     // Special skill
     private bool isSpecialCooldown;
-    private float specialCooldownTime = 2f;
+    private float specialCooldownTime = 30f;
     // Immortal
     private float coolDownImmortalTime = 0.8f;
 
@@ -57,7 +56,6 @@ public class PlayerControl : MonoBehaviour
     {
         //Initialization player parameter
         controller = GetComponent<Rigidbody2D>();
-        front = GetComponentInChildren<BoxCollider2D>();
         imageMainSkill = playerCamera.transform.Find("Canvas/Attack main/Button").GetComponent<Image>();
         render = GetComponent<SpriteRenderer>();
         transform = GetComponent<Transform>();
@@ -173,7 +171,10 @@ public class PlayerControl : MonoBehaviour
     private void MainAttack()
     {
         // Eat enemy on left button mouse
-        if (Input.GetMouseButtonDown(1) && eableEatEnemy && !isCooldown)
+        if (Input.GetMouseButtonDown(1) 
+            && eableEatEnemy 
+            && !isCooldown 
+            && enemy.GetComponent<Enemy_parameter>().EnemyAlive())
         {
             // Enemy kill
             Destroy(enemy);
@@ -210,6 +211,7 @@ public class PlayerControl : MonoBehaviour
                 case "Spikes":
                     isSpecialCooldown = true;
                     imageSpecialSkill.fillAmount = 0;
+                    transform.Find("SpikesCollider").GetComponent<SpikeZone>().ActivateSpike();
                     return;
                 case "Climbing":
                     isSpecialCooldown = true;
@@ -233,13 +235,19 @@ public class PlayerControl : MonoBehaviour
         }
         if (isSpecialCooldown)
         {
-            imageSpecialSkill.fillAmount += 1 / cooldownTime * Time.deltaTime;
+            imageSpecialSkill.fillAmount += 1 / specialCooldownTime * Time.deltaTime;
             if (imageSpecialSkill.fillAmount >= 1)
             {
                 imageSpecialSkill.fillAmount = 1;
                 isSpecialCooldown = false;
             }
         }
+
+    }
+
+    // Logic for Hook special attack
+    void HookAttack()
+    {
 
     }
 

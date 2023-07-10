@@ -27,14 +27,13 @@ public class Skill_randomization : MonoBehaviour
     public AudioSource source = new AudioSource();
     public AudioClip diceRoll;
 
-    // Start is called before the first frame update
     void Start()
     {
         skillImage = mainCamera.transform.Find("Canvas/Skills/Skill panel/Skill").GetComponent<Image>();
         dice = mainCamera.transform.Find("Canvas/Skills/Dice").gameObject;
 
         // Get number skill
-        skillNumber = Random.Range(1, maxSkillOnLevel);
+        skillNumber = Random.Range(2, maxSkillOnLevel);
         source.PlayOneShot(diceRoll);
         switch (skillNumber)
         {
