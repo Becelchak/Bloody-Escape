@@ -35,7 +35,6 @@ public class Magnet : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("Output magnet");
         needMagnet = false;
         if (objectMagnet != null) 
             objectMagnet.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
