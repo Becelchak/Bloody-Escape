@@ -1,7 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 using Transform = UnityEngine.Transform;
 
 public class PlayerControl : MonoBehaviour
@@ -31,6 +30,9 @@ public class PlayerControl : MonoBehaviour
     private GameObject enemy;
     private bool eableEatEnemy;
     private static bool immortal;
+    private Image imageMainSkill;
+    private string specialSkillName;
+    private Image imageSpecialSkill;
 
 
     // Other
@@ -43,9 +45,11 @@ public class PlayerControl : MonoBehaviour
 
     // Cooldown
     // Skill
-    private Image imageMainSkill;
     private float cooldownTime = 2f;
     private bool isCooldown;
+    // Special skill
+    private bool isSpecialCooldown;
+    private float specialCooldownTime = 2f;
     // Immortal
     private float coolDownImmortalTime = 0.8f;
 
@@ -58,6 +62,8 @@ public class PlayerControl : MonoBehaviour
         render = GetComponent<SpriteRenderer>();
         transform = GetComponent<Transform>();
         defeatMenu = playerCamera.transform.Find("Canvas/Menu/DefeatMenu").GetComponent<CanvasGroup>();
+        specialSkillName = GetComponent<Skill_randomization>().GetSpecialSkillName();
+        imageSpecialSkill = GetComponent<Skill_randomization>().GetSkillImage();
     }
 
     void Update()
@@ -65,6 +71,8 @@ public class PlayerControl : MonoBehaviour
         // Main Attack logic
         MainAttack();
 
+        // Special Attack logic
+        SpecialAttack(specialSkillName);
         // Cooldown intoxicated effect
         IntoxicatedStatus();
 
@@ -185,6 +193,42 @@ public class PlayerControl : MonoBehaviour
                 isCooldown = false;
             }
         }
+    }
+
+    private void SpecialAttack(string nameAttack)
+    {
+        if (Input.GetMouseButtonDown(0) && !isSpecialCooldown)
+        {
+            // Skill effect
+            switch (specialSkillName)
+            {
+                // Cooldown special attack On
+                case "Hook":
+                    isSpecialCooldown = true;
+                    imageSpecialSkill.fillAmount = 0;
+                    return;
+                case "Spikes":
+                    isSpecialCooldown = true;
+                    imageSpecialSkill.fillAmount = 0;
+                    return;
+                case "Climbing":
+                    isSpecialCooldown = true;
+                    imageSpecialSkill.fillAmount = 0;
+                    return;
+                default:
+                    return;
+            }
+        }
+        if (isSpecialCooldown)
+        {
+            imageSpecialSkill.fillAmount += 1 / cooldownTime * Time.deltaTime;
+            if (imageSpecialSkill.fillAmount >= 1)
+            {
+                imageSpecialSkill.fillAmount = 1;
+                isSpecialCooldown = false;
+            }
+        }
+
     }
 
     // Enemy in attack radius player
