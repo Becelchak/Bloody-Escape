@@ -36,10 +36,10 @@ public class Сonveyor : MonoBehaviour
         if (timeChangeSpeed)
         {
             timeChangeSpeed = false;
-            speedRotate = (float)Math.Ceiling(Random.Range(2f, 4f));
+            //speedRotate = (float)Math.Ceiling(Random.Range(2f, 4f));
         }
 
-        if(isObjectContain)
+        if(isObjectContain && ObjectForMove.GetComponent<Rigidbody2D>() != null)
         {
             switch (direction)
             {

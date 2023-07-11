@@ -37,7 +37,7 @@ public class PlayerControl : MonoBehaviour
     // Other
     public Camera playerCamera;
     private bool isMenuOpen;
-    private static bool isDead;
+    public static bool isDead { get; private set; }
     private static SpriteRenderer render;
     private static Transform transform;
     private static CanvasGroup defeatMenu;
@@ -267,7 +267,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     // Any heal for player
-    private static void BiomassUp(float massMultiplier)
+    public static void BiomassUp(float massMultiplier)
     {
         // Grows after eat enemy
         if (bioMassNow + bioMassNow * massMultiplier <= bioMassMax || bioMassNow < bioMassMax)
@@ -283,7 +283,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     // Any damage for player
-    private static void BiomassDown(float massMultiplier)
+    public static void BiomassDown(float massMultiplier)
     {
         // If immortal mod ON, player don't take any damage
         if (immortal) return;
@@ -331,5 +331,10 @@ public class PlayerControl : MonoBehaviour
     public bool GetStatus()
     {
         return intoxicated;
+    }
+
+    public static Vector3 GetPosition()
+    {
+        return transform.position;
     }
 }

@@ -20,7 +20,7 @@ public class room_script : MonoBehaviour
     {
         allNPCList.RemoveAll(item => item == null);
         if (allNPCList.Count == 0)
-            door.GetComponent<BoxCollider2D>().isTrigger = true;
+            door.SetActive(false);
     }
 
 }
