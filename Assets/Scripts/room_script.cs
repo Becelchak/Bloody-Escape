@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class room_script : MonoBehaviour
+public class Room_script : MonoBehaviour
 {
     public bool isFinalRoom;
 

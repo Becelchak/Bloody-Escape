@@ -25,7 +25,7 @@ public class Menu_main : MonoBehaviour
         thisGroup.alpha = 0;
         thisGroup.interactable = false;
         thisGroup.blocksRaycasts = false;
-        player.GetComponent<PlayerControl>().ChangeMenuStatus();
+        player.GetComponent<Player_Control>().ChangeMenuStatus();
     }
 
     public void InfoAboutGame()
@@ -51,6 +51,6 @@ public class Menu_main : MonoBehaviour
         thisGroup.alpha = 1;
         thisGroup.interactable = true;
         thisGroup.blocksRaycasts = true;
-        player.GetComponent<PlayerControl>().ChangeMenuStatus();
+        player.GetComponent<Player_Control>().ChangeMenuStatus();
     }
 }
