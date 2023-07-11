@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 public class Skill_randomization : MonoBehaviour
 {
     // Skill parameter
-    public int maxSkillOnLevel = 3;
+    public int maxSkillOnLevel = 6;
 
     private int skillNumber;
 
@@ -33,30 +33,30 @@ public class Skill_randomization : MonoBehaviour
         dice = mainCamera.transform.Find("Canvas/Skills/Dice").gameObject;
 
         // Get number skill
-        skillNumber = Random.Range(2, maxSkillOnLevel);
+        skillNumber = Random.Range(1, maxSkillOnLevel);
         source.PlayOneShot(diceRoll);
         switch (skillNumber)
         {
-            // Hook
-            case 1:
-                dice.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/Skills/Dice/1");
-                dice.GetComponent<CanvasGroup>().alpha = 1f;
-                skillImage.sprite = Resources.Load<Sprite>("UI/Skills/Hook");
-                skillName = "Hook";
-                return;
             // Spikes
-            case 2:
+            case 1:
                 dice.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/Skills/Dice/2");
                 dice.GetComponent<CanvasGroup>().alpha = 1f;
                 skillImage.sprite = Resources.Load<Sprite>("UI/Skills/Spikes");
                 skillName = "Spikes";
                 return;
             // Climbing
-            case 3:
+            case 2:
                 dice.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/Skills/Dice/3");
                 dice.GetComponent<CanvasGroup>().alpha = 1f;
                 skillImage.sprite = Resources.Load<Sprite>("UI/Skills/Climbing");
                 skillName = "Climbing";
+                return;
+            // Hook
+            case 3:
+                dice.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/Skills/Dice/1");
+                dice.GetComponent<CanvasGroup>().alpha = 1f;
+                skillImage.sprite = Resources.Load<Sprite>("UI/Skills/Hook");
+                skillName = "Hook";
                 return;
             // Whip
             case 4:
@@ -74,7 +74,7 @@ public class Skill_randomization : MonoBehaviour
                 return;
             // Masking
             case 6:
-                dice.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/Skills/Dice/5");
+                dice.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/Skills/Dice/6");
                 dice.GetComponent<CanvasGroup>().alpha = 1f;
                 skillImage.sprite = Resources.Load<Sprite>("UI/Skills/Masking");
                 skillName = "Masking";

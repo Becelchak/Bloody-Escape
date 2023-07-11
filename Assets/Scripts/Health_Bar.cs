@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar : MonoBehaviour
+public class Health_Bar : MonoBehaviour
 {
 
     private Slider slider;
@@ -18,7 +18,7 @@ public class HealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerHealth = player.GetComponent<PlayerControl>().ShowBiomassNow();
+        playerHealth = player.GetComponent<Player_Control>().ShowBiomassNow();
         slider.value = playerHealth;
     }
 }

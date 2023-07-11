@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpikeZone : MonoBehaviour
+public class Spike_Zone : MonoBehaviour
 {
     public GameObject spriteSpikes;
     private List<GameObject> Enemies = new List<GameObject>();

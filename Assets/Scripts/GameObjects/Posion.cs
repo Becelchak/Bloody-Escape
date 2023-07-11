@@ -8,25 +8,15 @@ public class Posion : MonoBehaviour
     public float damageTick = 2f;
     public float damagePosion = 0.2f;
     private GameObject objectPosion;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         objectPosion = collision.gameObject;
+        // If player enter in trigger zone -> set status intoxicated
         if (objectPosion.tag == "Player")
         {
-            var player = objectPosion.GetComponent<PlayerControl>();
-            if (player.GetStatus()) return;
+            var player = objectPosion.GetComponent<Player_Control>();
+            if (player.GetIntoxicatedStatus() || player.GetImmortalStatus()) return;
             player.GetIntoxicated(timePosion, damageTick, damagePosion);
         }
     }
@@ -34,10 +24,11 @@ public class Posion : MonoBehaviour
     void OnTriggerStay2D(Collider2D collision)
     {
         objectPosion = collision.gameObject;
+        // If player stay in trigger zone -> set status intoxicated
         if (objectPosion.tag == "Player")
         {
-            var player = objectPosion.GetComponent<PlayerControl>();
-            if (player.GetStatus()) return;
+            var player = objectPosion.GetComponent<Player_Control>();
+            if (player.GetIntoxicatedStatus() || player.GetImmortalStatus()) return;
             player.GetIntoxicated(timePosion, damageTick, damagePosion);
         }
     }
