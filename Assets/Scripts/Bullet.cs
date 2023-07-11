@@ -27,7 +27,7 @@ public class Bullet : MonoBehaviour
         if(collision.tag == "Player" || collision.tag == "Walls")
         {
             if(collision.tag == "Player")
-                PlayerControl.BiomassDown(damage);
+                Player_Control.BiomassDown(damage);
             Destroy(gameObject);
         }
     }

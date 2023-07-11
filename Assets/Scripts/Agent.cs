@@ -75,7 +75,7 @@ public class Agent : Enemy_parameter
                 Rotate();
                 break;
             case EnemyState.Attacking:
-                Move(runningSpeed, PlayerControl.GetPosition(), transform.position);
+                Move(runningSpeed, Player_Control.GetPosition(), transform.position);
                 RotateAfterMovementDirection();
                 break;
         }
@@ -183,7 +183,7 @@ public class Agent : Enemy_parameter
             else
                 timerBetweenShots -= Time.deltaTime;
 
-            isPlayerDetected = !PlayerControl.isDead;
+            isPlayerDetected = !Player_Control.isDead;
         }
     }
 

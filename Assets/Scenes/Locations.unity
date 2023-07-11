@@ -47193,7 +47193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25430feb3a1130147946f4ebfbf2de57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSkillOnLevel: 2
+  maxSkillOnLevel: 5
   mainCamera: {fileID: 1887355453}
   diceTime: 1.5
   source: {fileID: 221063324}
