@@ -9,7 +9,7 @@ public class Player_Control : MonoBehaviour
     private static float bioMassNow = 1;
     private static float bioMassMin = 1;
     private static float bioMassMax = 2;
-    private bool isInvisible;
+    public static bool isInvisible {get; private set;}
 
     // Effect parameter from acid
     private Image iconPosion;
@@ -58,6 +58,8 @@ public class Player_Control : MonoBehaviour
     // Immortal
     private float coolDownImmortalTime = 0.8f;
     private float cooldDownInvulnerabilityTime = 7f;
+    //Hiding
+    public static bool isHiding { get; private set; }
 
     void Start()
     {
@@ -97,6 +99,9 @@ public class Player_Control : MonoBehaviour
         // If player dead -> block control
         if (isDead) return;
 
+        //Test mechanic of hiding
+        Hide();
+
         // Drop some biomass
         DropdownBiomass();
 
@@ -124,7 +129,7 @@ public class Player_Control : MonoBehaviour
         var moveHorizontal = Input.GetAxis("Horizontal");
         var moveVertical = Input.GetAxis("Vertical");
 
-        controller.velocity = new Vector2(moveHorizontal * speed, moveVertical * speed);
+        controller.velocity = !isHiding ? new Vector2(moveHorizontal * speed, moveVertical * speed) : Vector2.zero;
 
     }
 
@@ -170,9 +175,12 @@ public class Player_Control : MonoBehaviour
             cooldDownInvulnerabilityTime -= Time.deltaTime;
             if (cooldDownInvulnerabilityTime < 0)
             {
-                immortal = false;
-                cooldDownInvulnerabilityTime = 7f;
-                Debug.Log("Not Immortal");
+                if (!isHiding)
+                {
+                    immortal = false;
+                    cooldDownInvulnerabilityTime = 7f;
+                    Debug.Log("Not Immortal");
+                }
             }
             return;
         }
@@ -247,7 +255,7 @@ public class Player_Control : MonoBehaviour
         if (Input.GetMouseButtonDown(1) 
             && eableEatEnemy 
             && !isCooldown 
-            && enemy.GetComponent<Enemy_parameter>().EnemyAlive())
+            && enemy.GetComponent<Enemy_parameter>().canBeDevoured())
         {
             // Enemy kill
             Destroy(enemy);
@@ -421,5 +429,22 @@ public class Player_Control : MonoBehaviour
     public bool GetInvisibleStatus()
     {
         return isInvisible;
+    }
+
+    private void Hide()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            isHiding = !isHiding;
+            isInvisible = isHiding;
+            intoxicated = isHiding;
+            immortal = isHiding;
+            render.color = isHiding ? Color.clear : Color.green;
+        }
+    }
+
+    public static float GetBiomassSize()
+    {
+        return transform.localScale.y - 2;
     }
 }

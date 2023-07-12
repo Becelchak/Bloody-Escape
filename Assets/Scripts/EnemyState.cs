@@ -5,7 +5,7 @@ using UnityEngine;
 public enum EnemyState
 {
     Idle,
-    Walking,
     Rotating,
+    Walking,
     Attacking
 }
