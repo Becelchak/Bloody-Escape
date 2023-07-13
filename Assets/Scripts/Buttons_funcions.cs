@@ -6,10 +6,6 @@ public class Buttons_funcions : MonoBehaviour
 {
     public Collider2D cursor;
     public GameObject mainMenu;
-    void Start()
-    {
- 
-    }
 
     void Update()
     {

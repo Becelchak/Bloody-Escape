@@ -2031,7 +2031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursor: {fileID: 492272163}
-  infoMenu: {fileID: 1190851766}
+  mainMenu: {fileID: 1190851766}
 --- !u!1 &1498120187
 GameObject:
   m_ObjectHideFlags: 0

@@ -30,8 +30,8 @@ public class Player_Control : MonoBehaviour
     private Rigidbody2D controller;
 
     // Fight
-    private GameObject enemy;
-    private bool eableEatEnemy;
+    public GameObject enemy;
+    public bool eableEatEnemy;
     private static bool immortal;
     private Image imageMainSkill;
     private string specialSkillName;
@@ -41,10 +41,12 @@ public class Player_Control : MonoBehaviour
     // Other
     public Camera playerCamera;
     private bool isMenuOpen;
+    private CanvasGroup menuNow;
     public static bool isDead { get; private set; }
     private static SpriteRenderer render;
     private static Transform transform;
     private static CanvasGroup defeatMenu;
+    private CanvasGroup winMenu;
 
     // Cooldown 1f = 1 second
     // Skill
@@ -67,21 +69,19 @@ public class Player_Control : MonoBehaviour
         render = GetComponent<SpriteRenderer>();
         transform = GetComponent<Transform>();
         defeatMenu = playerCamera.transform.Find("Canvas/Menu/DefeatMenu").GetComponent<CanvasGroup>();
+        winMenu = playerCamera.transform.Find("Canvas/Menu/WinMenu").GetComponent<CanvasGroup>();
         specialSkillName = GetComponent<Skill_randomization>().GetSpecialSkillName();
         imageSpecialSkill = GetComponent<Skill_randomization>().GetSkillImage();
         // Set icon for posion
         iconPosion = playerCamera.transform.Find("Canvas/PosionEffect/Button").GetComponent<Image>();
         // Set icon for Invulnerability
         iconImmortal = playerCamera.transform.Find("Canvas/InvulnerabilityEffect/Button").GetComponent<Image>();
+        // If level restart
+        isDead = false;
     }
 
     void Update()
     {
-        // Main Attack logic
-        MainAttack();
-
-        // Special Attack logic
-        SpecialAttack(specialSkillName);
         // Cooldown intoxicated effect
         IntoxicatedStatus();
 
@@ -91,14 +91,11 @@ public class Player_Control : MonoBehaviour
         // Stealth time for Climbing and Masking skilles
         StealthStatus();
 
-        // If player use shift -> up speed on 1,5
-        ShiftStatus();
+        // Main Attack logic
+        MainAttack();
 
         // If player dead -> block control
         if (isDead) return;
-
-        // Drop some biomass
-        DropdownBiomass();
 
         //Menu open
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -107,13 +104,24 @@ public class Player_Control : MonoBehaviour
             MenuStatus();
         else
             MenuClose();
+
+        if (isMenuOpen) return;
+
+        // Special Attack logic
+        SpecialAttack(specialSkillName);
+
+        // Drop some biomass
+        DropdownBiomass();
+
+        // If player use shift -> up speed on 1,5
+        ShiftStatus();
     }
     
     // Move player
     void FixedUpdate()
     {
         // If player dead -> block control
-        if (isDead) return;
+        if (isDead || isMenuOpen) return;
 
         // Follow mouse
         var dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
@@ -137,32 +145,41 @@ public class Player_Control : MonoBehaviour
         defeatMenu.interactable = true;
     }
 
+    public void FinishGame()
+    {
+        winMenu.alpha = 1f;
+        winMenu.blocksRaycasts = true;
+        winMenu.interactable = true;
+    }
+
     public void ChangeMenuStatus()
     {
         isMenuOpen = !isMenuOpen;
     }
 
+    public void ChangeMenuNow(CanvasGroup menu)
+    {
+        menuNow = menu;
+    }
+
     private void MenuClose()
     {
-        var menu = playerCamera.transform.Find("Canvas/Menu/MainMenu").GetComponent<CanvasGroup>();
-        menu.alpha = 0;
-        menu.blocksRaycasts = false;
-        menu.interactable = false;
+        menuNow.alpha = 0;
+        menuNow.blocksRaycasts = false;
+        menuNow.interactable = false;
     }
 
     private void MenuStatus()
     {
-        var menu = playerCamera.transform.Find("Canvas/Menu/MainMenu").GetComponent<CanvasGroup>();
-        menu.alpha = 1f;
-        menu.blocksRaycasts = true;
-        menu.interactable = true;
+        menuNow.alpha = 1f;
+        menuNow.blocksRaycasts = true;
+        menuNow.interactable = true;
     }
 
     // See immortal status in player parameter
     private void ImmortalStatus()
     {
         if (!immortal) return;
-        Debug.Log("Immortal");
         // Another immortal time for Invulnerability skill
         if (specialSkillName == "Invulnerability")
         {
@@ -172,7 +189,6 @@ public class Player_Control : MonoBehaviour
             {
                 immortal = false;
                 cooldDownInvulnerabilityTime = 7f;
-                Debug.Log("Not Immortal");
             }
             return;
         }
@@ -182,7 +198,6 @@ public class Player_Control : MonoBehaviour
         {
             immortal = false;
             coolDownImmortalTime = 0.8f;
-            Debug.Log("Not Immortal");
         }
     }
 
@@ -280,6 +295,8 @@ public class Player_Control : MonoBehaviour
             {
                 // Cooldown special attack On
                 case "Hook":
+                    transform.Find("Mouth").GetComponent<Hook_logic>().ActiveHook();
+                    transform.Find("Mouth").GetComponent<Hook_logic>().Update();
                     return;
                 case "Spikes":
                     transform.Find("SpikesCollider").GetComponent<Spike_Zone>().ActivateSpike();
@@ -315,27 +332,6 @@ public class Player_Control : MonoBehaviour
             }
         }
 
-    }
-
-    // Logic for Hook special attack
-    void HookAttack()
-    {
-
-    }
-
-    // Enemy in attack radius player
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Enemy")
-            enemy = collision.gameObject;
-        eableEatEnemy = enemy != null;
-    }
-
-    // Enemy out attack radius player
-    void OnTriggerExit2D(Collider2D collision)
-    {
-        enemy = null;
-        eableEatEnemy = false;
     }
 
     // Any heal for player
