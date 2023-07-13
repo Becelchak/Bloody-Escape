@@ -1,23 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class Menu_main : MonoBehaviour
+public class Menu_in_game : MonoBehaviour
 {
     private CanvasGroup thisGroup;
     private CanvasGroup infoGroup;
     public GameObject player;
-    // Start is called before the first frame update
+    
     void Start()
     {
         thisGroup = transform.Find("MainMenu").GetComponent<CanvasGroup>();
         infoGroup = transform.Find("InfoMenu").GetComponent<CanvasGroup>();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        player.GetComponent<Player_Control>().ChangeMenuNow(thisGroup);
     }
 
     public void ContinueGame()
@@ -30,16 +29,20 @@ public class Menu_main : MonoBehaviour
 
     public void InfoAboutGame()
     {
-        ContinueGame();
+        thisGroup.alpha = 0;
+        thisGroup.interactable = false;
+        thisGroup.blocksRaycasts = false;
+
         infoGroup.alpha = 1;
         infoGroup.interactable = true;
         infoGroup.blocksRaycasts = true;
 
+        player.GetComponent<Player_Control>().ChangeMenuNow(infoGroup);
     }
 
-    public void ExitGame()
+    public void ReturnMenu()
     {
-        Application.Quit();
+        SceneManager.LoadScene("Main_Menu", LoadSceneMode.Single);
     }
 
     public void BackFromInfoMenu()
@@ -51,6 +54,7 @@ public class Menu_main : MonoBehaviour
         thisGroup.alpha = 1;
         thisGroup.interactable = true;
         thisGroup.blocksRaycasts = true;
-        player.GetComponent<Player_Control>().ChangeMenuStatus();
+
+        player.GetComponent<Player_Control>().ChangeMenuNow(thisGroup);
     }
 }

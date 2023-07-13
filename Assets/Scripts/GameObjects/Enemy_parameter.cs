@@ -50,7 +50,7 @@ public class Enemy_parameter : MonoBehaviour
         attackModeTimer = attackModeTime;
         nextEdgePos = upPos.localPosition;
     }
-
+    
     public bool EnemyAlive()
     {
         return isAlive;

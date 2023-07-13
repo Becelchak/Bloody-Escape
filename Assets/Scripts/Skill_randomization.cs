@@ -1,7 +1,4 @@
-using Microsoft.Unity.VisualStudio.Editor;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.UI;
 using Image = UnityEngine.UI.Image;
 using Random = UnityEngine.Random;
 
@@ -33,7 +30,7 @@ public class Skill_randomization : MonoBehaviour
         dice = mainCamera.transform.Find("Canvas/Skills/Dice").gameObject;
 
         // Get number skill
-        skillNumber = Random.Range(1, maxSkillOnLevel);
+        skillNumber = Random.Range(3, 3);
         source.PlayOneShot(diceRoll);
         switch (skillNumber)
         {
