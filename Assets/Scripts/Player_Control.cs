@@ -66,6 +66,7 @@ public class Player_Control : MonoBehaviour
     void Start()
     {
         //Initialization player parameter
+        speed = 8f;
         controller = GetComponent<Rigidbody2D>();
         imageMainSkill = playerCamera.transform.Find("Canvas/Attack main/Button").GetComponent<Image>();
         render = GetComponent<SpriteRenderer>();
@@ -368,7 +369,6 @@ public class Player_Control : MonoBehaviour
         if (immortal) return;
         bioMassNow = bioMassNow - bioMassMin * massMultiplier < bioMassMin ? 0
             : bioMassNow - bioMassMin * massMultiplier;
-        Debug.Log($"Take damage: {massMultiplier}");
         // If biomass = 0 -> player dead
         if (bioMassNow == 0)
         {
