@@ -37,9 +37,11 @@ public class Skill_randomization : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if(start)
+        if (start)
         {
-            if(animationTimer <= 0)
+
+            Debug.LogError("Start log");
+            if (animationTimer <= 0)
             {
                 Player_Control.isAbleToMove = true;
                 diceAnimator.SetBool("start", false);
@@ -61,18 +63,21 @@ public class Skill_randomization : MonoBehaviour
         return skillImage;
     }
 
+    // Bug source
     public void Dice()
     {
+        Debug.LogError("Dice log");
         skillNumber = Random.Range(1, maxSkillOnLevel + 1);
-        diceAnimator.SetFloat("Attack", skillNumber);
-        diceAnimator.SetBool("start", true);
-        animationTimer = animationTime;
+        //diceAnimator.SetFloat("Attack", skillNumber);
+        //diceAnimator.SetBool("start", true);
+        //animationTimer = animationTime;
         Player_Control.isAbleToMove = false;
         start = true;
     }
 
     private void ShowAttack()
     {
+        Debug.Log("Show log");
         switch (skillNumber)
         {
             // Spikes

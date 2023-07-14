@@ -9,7 +9,8 @@ public class Buttons_funcions : MonoBehaviour
 
     void Update()
     {
-        cursor.gameObject.transform.position = Input.mousePosition;
+        if(cursor != null)
+            cursor.gameObject.transform.position = Input.mousePosition;
     }
 
     public void StartGame()

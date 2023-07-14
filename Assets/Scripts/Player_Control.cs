@@ -55,7 +55,7 @@ public class Player_Control : MonoBehaviour
     private bool isCooldown;
     // Special skill
     private bool isSpecialCoolDown;
-    private float specialCoolDownTime = 30f;
+    private float specialCoolDownTime = 1f;
     // Special skill climbing
     private float stealthCoolDownTime = 10f;
     // Immortal
@@ -64,7 +64,7 @@ public class Player_Control : MonoBehaviour
     //Hiding
     public static bool isHiding { get; private set; }
 
-    public static bool isAbleToMove { get; set; }
+    public static bool isAbleToMove { get; set; } = true;
 
     [SerializeField] private Hook_logic hook;
     [SerializeField] private Spike_Zone spikesZone;
@@ -306,8 +306,10 @@ public class Player_Control : MonoBehaviour
             {
                 // Cooldown special attack On
                 case "Hook":
+                    isAbleToMove = false;
                     hook.ActiveHook();
                     hook.Update();
+                    isAbleToMove = true;
                     return;
                 case "Spikes":
                     spikesZone.ActivateSpike();

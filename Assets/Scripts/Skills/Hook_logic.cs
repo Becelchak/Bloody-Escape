@@ -8,7 +8,7 @@ public class Hook_logic : MonoBehaviour
 {
     public Camera mainCamera;
     public LineRenderer tongue;
-    public DistanceJoint2D distance;
+    public DistanceJoint2D distance { get; private set; }
     public CircleCollider2D hookCollider;
     public GameObject player;
 
@@ -17,6 +17,7 @@ public class Hook_logic : MonoBehaviour
     
     void Start()
     {
+        distance = player.GetComponent<DistanceJoint2D>();
         distance.enabled = false;
     }
 
@@ -28,7 +29,7 @@ public class Hook_logic : MonoBehaviour
         {
             distance.connectedAnchor = mainCamera.ScreenToWorldPoint(Input.mousePosition);
             hookCollider.transform.position = distance.connectedAnchor;
-            tongue.SetPosition(0,distance.connectedAnchor);
+            tongue.SetPosition(0, distance.connectedAnchor);
             tongue.SetPosition(1, transform.position);
             distance.enabled = true;
             tongue.enabled = true;
@@ -37,7 +38,7 @@ public class Hook_logic : MonoBehaviour
         if (tongue.positionCount == 2)
         {
             liveTimeHook -= Time.deltaTime;
-            if(liveTimeHook <= 0)
+            if (liveTimeHook <= 0)
             {
                 distance.enabled = false;
                 tongue.enabled = false;
@@ -48,7 +49,7 @@ public class Hook_logic : MonoBehaviour
 
         if (distance.enabled)
         {
-            tongue.SetPosition(1,transform.position);
+            tongue.SetPosition(1, transform.position);
         }
     }
 
