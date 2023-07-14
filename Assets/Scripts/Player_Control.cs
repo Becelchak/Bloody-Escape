@@ -44,7 +44,7 @@ public class Player_Control : MonoBehaviour
     private CanvasGroup menuNow;
     public static bool isDead { get; private set; }
     private static SpriteRenderer render;
-    private static Transform transform;
+    private static Transform transform1;
     private static CanvasGroup defeatMenu;
     public CanvasGroup dm;
     public CanvasGroup winMenu;
@@ -76,7 +76,7 @@ public class Player_Control : MonoBehaviour
         speed = 8f;
         controller = GetComponent<Rigidbody2D>();
         render = GetComponent<SpriteRenderer>();
-        transform = GetComponent<Transform>();
+        transform1 = GetComponent<Transform>();
         defeatMenu = dm;
         specialSkillName = GetComponent<Skill_randomization>();
         imageSpecialSkill = GetComponent<Skill_randomization>().GetSkillImage();
@@ -134,15 +134,15 @@ public class Player_Control : MonoBehaviour
         if (isDead || isMenuOpen) return;
 
         // Follow mouse
-        var dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+        var dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform1.position);
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform1.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         // Move player
         var moveHorizontal = Input.GetAxis("Horizontal");
         var moveVertical = Input.GetAxis("Vertical");
 
-        controller.velocity = !isHiding || !isAbleToMove ? new Vector2(moveHorizontal * speed, moveVertical * speed) : Vector2.zero;
+        controller.velocity = !isAbleToMove ? new Vector2(moveHorizontal * speed, moveVertical * speed) : Vector2.zero;
 
     }
 
@@ -197,11 +197,8 @@ public class Player_Control : MonoBehaviour
             cooldDownInvulnerabilityTime -= Time.deltaTime;
             if (cooldDownInvulnerabilityTime < 0)
             {
-                if (!isHiding)
-                {
-                    immortal = false;
-                    cooldDownInvulnerabilityTime = 7f;
-                }
+                immortal = false;
+                cooldDownInvulnerabilityTime = 7f;
             }
             return;
         }
@@ -255,7 +252,7 @@ public class Player_Control : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && bioMassNow - 0.1f > bioMassMin)
         {
             bioMassNow -= 0.1f;
-            transform.localScale -= new Vector3(0.05f, 0.1f, 0);
+            transform1.localScale -= new Vector3(0.05f, 0.1f, 0);
             speed += bioMassNow - 1f;
         }
     }
@@ -354,7 +351,7 @@ public class Player_Control : MonoBehaviour
         // Grows after eat enemy
         if (bioMassNow + bioMassNow * massMultiplier <= bioMassMax || bioMassNow < bioMassMax)
         {
-            transform.localScale += new Vector3(0.1f, 0.2f, 0);
+            transform1.localScale += new Vector3(0.1f, 0.2f, 0);
             // Change speed after change size player
             speed -= bioMassNow * massMultiplier * 2;
         }
@@ -377,7 +374,7 @@ public class Player_Control : MonoBehaviour
             DeadPlayer();
         }
         // Decreases after take damage
-        transform.localScale -= new Vector3(0.1f, 0.2f, 0);
+        transform1.localScale -= new Vector3(0.1f, 0.2f, 0);
         // Change speed after change size player
         speed += (bioMassNow - 1f) * 2;
     }
@@ -418,7 +415,7 @@ public class Player_Control : MonoBehaviour
 
     public static Vector3 GetPosition()
     {
-        return transform.position;
+        return transform1.position;
     }
 
     // Give immortal other class in other gameobjects
@@ -446,6 +443,11 @@ public class Player_Control : MonoBehaviour
 
     public static float GetBiomassSize()
     {
-        return transform.localScale.y - 2;
+        return transform1.localScale.y - 2;
+    }
+
+    public static void SetPosition(Vector3 newPos)
+    {
+        transform1.position = newPos;
     }
 }

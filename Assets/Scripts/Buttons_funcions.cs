@@ -14,7 +14,7 @@ public class Buttons_funcions : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Locations", LoadSceneMode.Single);
+        SceneManager.LoadScene("Locations");
     }
 
     public void CloseGame()
@@ -40,11 +40,11 @@ public class Buttons_funcions : MonoBehaviour
 
     public void RestartLevel()
     {
-        Application.LoadLevel(Application.loadedLevel);
+        SceneManager.LoadScene("Locations");
     }
 
     public void ReturnMenu()
     {
-        SceneManager.LoadScene("Main_Menu", LoadSceneMode.Single);
+        SceneManager.LoadScene("Main_Menu");
     }
 }

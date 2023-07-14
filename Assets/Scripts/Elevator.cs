@@ -9,7 +9,7 @@ public class Elevator : MonoBehaviour
     [SerializeField] private Room room;
     [SerializeField] GameObject text;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.tag == "Player")
         {
@@ -20,10 +20,12 @@ public class Elevator : MonoBehaviour
                 if (isFinal)
                     collision.GetComponent<Player_Control>().FinishGame();
                 else
-                    collision.transform.position = nextPosition.position;
+                    Player_Control.SetPosition(nextPosition.position);
             }
         }
     }
+
+
 
     private void OnTriggerExit2D(Collider2D collision)
     {
