@@ -1,6 +1,9 @@
 using UnityEngine;
 using Image = UnityEngine.UI.Image;
 using Random = UnityEngine.Random;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 
 public class Skill_randomization : MonoBehaviour
 {
@@ -14,7 +17,7 @@ public class Skill_randomization : MonoBehaviour
     // UI component
     public Camera mainCamera;
 
-    private Image skillImage;
+    public Image skillImage;
 
     private GameObject dice;
 
@@ -24,70 +27,28 @@ public class Skill_randomization : MonoBehaviour
     public AudioSource source = new AudioSource();
     public AudioClip diceRoll;
 
-    void Start()
-    {
-        skillImage = mainCamera.transform.Find("Canvas/Skills/Skill panel/Skill").GetComponent<Image>();
-        dice = mainCamera.transform.Find("Canvas/Skills/Dice").gameObject;
+    public Animator diceAnimator;
+    public float animationTime;
+    private float animationTimer;
+    public bool start;
 
-        // Get number skill
-        skillNumber = Random.Range(3, 3);
-        source.PlayOneShot(diceRoll);
-        switch (skillNumber)
-        {
-            // Spikes
-            case 1:
-                dice.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/Skills/Dice/2");
-                dice.GetComponent<CanvasGroup>().alpha = 1f;
-                skillImage.sprite = Resources.Load<Sprite>("UI/Skills/Spikes");
-                skillName = "Spikes";
-                return;
-            // Climbing
-            case 2:
-                dice.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/Skills/Dice/3");
-                dice.GetComponent<CanvasGroup>().alpha = 1f;
-                skillImage.sprite = Resources.Load<Sprite>("UI/Skills/Climbing");
-                skillName = "Climbing";
-                return;
-            // Hook
-            case 3:
-                dice.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/Skills/Dice/1");
-                dice.GetComponent<CanvasGroup>().alpha = 1f;
-                skillImage.sprite = Resources.Load<Sprite>("UI/Skills/Hook");
-                skillName = "Hook";
-                return;
-            // Whip
-            case 4:
-                dice.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/Skills/Dice/4");
-                dice.GetComponent<CanvasGroup>().alpha = 1f;
-                skillImage.sprite = Resources.Load<Sprite>("UI/Skills/Whip");
-                skillName = "Whip";
-                return;
-            // Invulnerability
-            case 5:
-                dice.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/Skills/Dice/5");
-                dice.GetComponent<CanvasGroup>().alpha = 1f;
-                skillImage.sprite = Resources.Load<Sprite>("UI/Skills/Invulnerability");
-                skillName = "Invulnerability";
-                return;
-            // Masking
-            case 6:
-                dice.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/Skills/Dice/6");
-                dice.GetComponent<CanvasGroup>().alpha = 1f;
-                skillImage.sprite = Resources.Load<Sprite>("UI/Skills/Masking");
-                skillName = "Masking";
-                return;
-            default:
-                return;
-        }
-    }
+    public Sprite hook, spikes, climbing, whip, invincibility, mask;
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (diceTime > 0)
-            diceTime -= Time.deltaTime;
-        if (diceTime <= 0)
-            dice.GetComponent<CanvasGroup>().alpha = 0f;
+        if(start)
+        {
+            if(animationTimer <= 0)
+            {
+                Player_Control.isAbleToMove = true;
+                diceAnimator.SetBool("start", false);
+                start = false;
+                ShowAttack();
+            }
+            else
+                animationTimer -= Time.deltaTime;
+        }
     }
 
     public string GetSpecialSkillName()
@@ -98,5 +59,54 @@ public class Skill_randomization : MonoBehaviour
     public Image GetSkillImage()
     {
         return skillImage;
+    }
+
+    public void Dice()
+    {
+        skillNumber = Random.Range(1, maxSkillOnLevel + 1);
+        diceAnimator.SetFloat("Attack", skillNumber);
+        diceAnimator.SetBool("start", true);
+        animationTimer = animationTime;
+        Player_Control.isAbleToMove = false;
+        start = true;
+    }
+
+    private void ShowAttack()
+    {
+        switch (skillNumber)
+        {
+            // Spikes
+            case 1:
+                skillImage.sprite = spikes;
+                skillName = "Spikes";
+                break;
+            // Climbing
+            case 2:
+                skillImage.sprite = climbing;
+                skillName = "Climbing";
+                break;
+            // Hook
+            case 3:
+                skillImage.sprite = hook;
+                skillName = "Hook";
+                break;
+            // Whip
+            case 4:
+                skillImage.sprite = whip;
+                skillName = "Whip";
+                break;
+            // Invulnerability
+            case 5:
+                skillImage.sprite = invincibility;
+                skillName = "Invulnerability";
+                break;
+            // Masking
+            case 6:
+                skillImage.sprite = mask;
+                skillName = "Masking";
+                break;
+            default:
+                break;
+        }
     }
 }

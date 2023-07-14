@@ -16,8 +16,12 @@ public class Posion : MonoBehaviour
         if (objectPosion.tag == "Player")
         {
             var player = objectPosion.GetComponent<Player_Control>();
-            if (player.GetIntoxicatedStatus() || player.GetImmortalStatus()) return;
-            player.GetIntoxicated(timePosion, damageTick, damagePosion);
+            if (player != null)
+            {
+                if (player.GetIntoxicatedStatus() || player.GetImmortalStatus())
+                    return;
+                player.GetIntoxicated(timePosion, damageTick, damagePosion);
+            }
         }
     }
 
@@ -28,8 +32,12 @@ public class Posion : MonoBehaviour
         if (objectPosion.tag == "Player")
         {
             var player = objectPosion.GetComponent<Player_Control>();
-            if (player.GetIntoxicatedStatus() || player.GetImmortalStatus()) return;
-            player.GetIntoxicated(timePosion, damageTick, damagePosion);
+            if (player != null)
+            {
+                if (player.GetIntoxicatedStatus() || player.GetImmortalStatus()) 
+                    return;
+                player.GetIntoxicated(timePosion, damageTick, damagePosion);
+            }
         }
     }
 

@@ -14,9 +14,10 @@ public class Hook_eating_logic : MonoBehaviour
             player.enemy = collision.gameObject;
             player.eableEatEnemy = player.enemy != null;
             // Enemy kill
+            collision.GetComponent<Enemy_parameter>().Clear();
             Destroy(collision.gameObject);
             Player_Control.BiomassUp(0.2f);
-            Debug.Log($"{player.enemy}");
+            Physics2D.IgnoreLayerCollision(8, 9, true);
         }
     }
 
@@ -25,5 +26,6 @@ public class Hook_eating_logic : MonoBehaviour
     {
         player.enemy = null;
         player.eableEatEnemy = false;
+        Physics2D.IgnoreLayerCollision(8, 9, true);
     }
 }

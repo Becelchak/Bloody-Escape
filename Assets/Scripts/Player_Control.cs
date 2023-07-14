@@ -9,10 +9,10 @@ public class Player_Control : MonoBehaviour
     private static float bioMassNow = 1;
     private static float bioMassMin = 1;
     private static float bioMassMax = 2;
-    public static bool isInvisible {get; private set;}
+    public static bool isInvisible { get; private set; }
 
     // Effect parameter from acid
-    private Image iconPosion;
+    public Image iconPosion;
     private bool intoxicated;
     private float damageEffect;
     private float intoxicatedTime;
@@ -21,7 +21,7 @@ public class Player_Control : MonoBehaviour
     private float tempTick;
     private float tempAlltime;
     // Effect immortal
-    private Image iconImmortal;
+    public Image iconImmortal;
     private float tempAllImmortaltime;
 
 
@@ -33,8 +33,8 @@ public class Player_Control : MonoBehaviour
     public GameObject enemy;
     public bool eableEatEnemy;
     private static bool immortal;
-    private Image imageMainSkill;
-    private string specialSkillName;
+    public Image imageMainSkill;
+    private Skill_randomization specialSkillName;
     private Image imageSpecialSkill;
 
 
@@ -46,7 +46,8 @@ public class Player_Control : MonoBehaviour
     private static SpriteRenderer render;
     private static Transform transform;
     private static CanvasGroup defeatMenu;
-    private CanvasGroup winMenu;
+    public CanvasGroup dm;
+    public CanvasGroup winMenu;
 
     // Cooldown 1f = 1 second
     // Skill
@@ -63,22 +64,22 @@ public class Player_Control : MonoBehaviour
     //Hiding
     public static bool isHiding { get; private set; }
 
+    public static bool isAbleToMove { get; set; }
+
+    [SerializeField] private Hook_logic hook;
+    [SerializeField] private Spike_Zone spikesZone;
+    [SerializeField] private Whipe_zone whipe;
+
     void Start()
     {
         //Initialization player parameter
         speed = 8f;
         controller = GetComponent<Rigidbody2D>();
-        imageMainSkill = playerCamera.transform.Find("Canvas/Attack main/Button").GetComponent<Image>();
         render = GetComponent<SpriteRenderer>();
         transform = GetComponent<Transform>();
-        defeatMenu = playerCamera.transform.Find("Canvas/Menu/DefeatMenu").GetComponent<CanvasGroup>();
-        winMenu = playerCamera.transform.Find("Canvas/Menu/WinMenu").GetComponent<CanvasGroup>();
-        specialSkillName = GetComponent<Skill_randomization>().GetSpecialSkillName();
+        defeatMenu = dm;
+        specialSkillName = GetComponent<Skill_randomization>();
         imageSpecialSkill = GetComponent<Skill_randomization>().GetSkillImage();
-        // Set icon for posion
-        iconPosion = playerCamera.transform.Find("Canvas/PosionEffect/Button").GetComponent<Image>();
-        // Set icon for Invulnerability
-        iconImmortal = playerCamera.transform.Find("Canvas/InvulnerabilityEffect/Button").GetComponent<Image>();
         // If level restart
         isDead = false;
     }
@@ -101,7 +102,7 @@ public class Player_Control : MonoBehaviour
         if (isDead) return;
 
         //Test mechanic of hiding
-        Hide();
+        //Hide();
 
         // Drop some biomass
         DropdownBiomass();
@@ -117,7 +118,7 @@ public class Player_Control : MonoBehaviour
         if (isMenuOpen) return;
 
         // Special Attack logic
-        SpecialAttack(specialSkillName);
+        SpecialAttack(specialSkillName.GetSpecialSkillName());
 
         // Drop some biomass
         DropdownBiomass();
@@ -141,14 +142,14 @@ public class Player_Control : MonoBehaviour
         var moveHorizontal = Input.GetAxis("Horizontal");
         var moveVertical = Input.GetAxis("Vertical");
 
-        controller.velocity = !isHiding ? new Vector2(moveHorizontal * speed, moveVertical * speed) : Vector2.zero;
+        controller.velocity = !isHiding || !isAbleToMove ? new Vector2(moveHorizontal * speed, moveVertical * speed) : Vector2.zero;
 
     }
 
     private static void DeadPlayer()
     {
         isDead = true;
-        render.color = Color.red;
+        render.color = Color.black;
         defeatMenu.alpha = 1f;
         defeatMenu.blocksRaycasts = true;
         defeatMenu.interactable = true;
@@ -190,7 +191,7 @@ public class Player_Control : MonoBehaviour
     {
         if (!immortal) return;
         // Another immortal time for Invulnerability skill
-        if (specialSkillName == "Invulnerability")
+        if (specialSkillName.GetSpecialSkillName() == "Invulnerability")
         {
             iconImmortal.fillAmount -= 1 / tempAllImmortaltime * Time.deltaTime;
             cooldDownInvulnerabilityTime -= Time.deltaTime;
@@ -234,14 +235,14 @@ public class Player_Control : MonoBehaviour
     // See stealth status in player parameter
     private void StealthStatus()
     {
-        if ((specialSkillName == "Climbing" || specialSkillName == "Masking") && isInvisible)
+        if ((specialSkillName.GetSpecialSkillName() == "Climbing" || specialSkillName.GetSpecialSkillName() == "Masking") && isInvisible)
         {
             stealthCoolDownTime -= Time.deltaTime;
             if (stealthCoolDownTime <= 0)
             {
-                GetComponent<SpriteRenderer>().color = new Color(0.1f, 1f, 0.1f, 1);
+                GetComponent<SpriteRenderer>().color = new Color(1f, 0.1f, 0.1f, 1);
                 isInvisible = false;
-                if(specialSkillName == "Climbing")
+                if(specialSkillName.GetSpecialSkillName() == "Climbing")
                     intoxicated = false;
                 stealthCoolDownTime = 10f;
             }
@@ -274,9 +275,10 @@ public class Player_Control : MonoBehaviour
         if (Input.GetMouseButtonDown(1) 
             && eableEatEnemy 
             && !isCooldown 
-            && enemy.GetComponent<Enemy_parameter>().canBeDevoured())
+            && enemy.GetComponent<Enemy_parameter>().CanBeDevoured())
         {
             // Enemy kill
+            enemy.GetComponent<Enemy_parameter>().Clear();
             Destroy(enemy);
             BiomassUp(0.2f);
 
@@ -303,15 +305,15 @@ public class Player_Control : MonoBehaviour
             isSpecialCoolDown = true;
             imageSpecialSkill.fillAmount = 0;
             // Skill effect
-            switch (specialSkillName)
+            switch (specialSkillName.GetSpecialSkillName())
             {
                 // Cooldown special attack On
                 case "Hook":
-                    transform.Find("Mouth").GetComponent<Hook_logic>().ActiveHook();
-                    transform.Find("Mouth").GetComponent<Hook_logic>().Update();
+                    hook.ActiveHook();
+                    hook.Update();
                     return;
                 case "Spikes":
-                    transform.Find("SpikesCollider").GetComponent<Spike_Zone>().ActivateSpike();
+                    spikesZone.ActivateSpike();
                     return;
                 case "Climbing":
                     isInvisible = true;
@@ -319,7 +321,7 @@ public class Player_Control : MonoBehaviour
                     GetComponent<SpriteRenderer>().color = new Color(0.5f,0.5f,0.5f,0.3f);
                     return;
                 case "Whip":
-                    transform.Find("WhipeCollider").GetComponent<Whipe_zone>().ActivateWhipe();
+                    whipe.ActivateWhipe();
                     return;
                 case "Invulnerability":
                     immortal = true;
@@ -438,7 +440,7 @@ public class Player_Control : MonoBehaviour
             isInvisible = isHiding;
             intoxicated = isHiding;
             immortal = isHiding;
-            render.color = isHiding ? Color.clear : Color.green;
+            render.color = isHiding ? Color.clear : Color.red;
         }
     }
 

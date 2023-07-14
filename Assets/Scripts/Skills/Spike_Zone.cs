@@ -52,8 +52,8 @@ public class Spike_Zone : MonoBehaviour
         // Kill all enemy in spikes zone
         foreach (var enemy in Enemies)
         {
-            enemy.GetComponent<SpriteRenderer>().color = Color.red;
             enemy.GetComponent<Enemy_parameter>().ChangeLiveStatus();
+            enemy.GetComponent<SpriteRenderer>().color = Color.clear;
         }
 
         Enemies.Clear();

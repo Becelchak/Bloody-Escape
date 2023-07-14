@@ -16,9 +16,9 @@ TagManager:
   - Water
   - UI
   - Objects
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - Hook
   - 
   - 
   - 
@@ -53,4 +53,7 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 577507895
+    locked: 0
+  - name: Dice
+    uniqueID: 1866206511
     locked: 0

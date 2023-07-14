@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 238284092090266561}
   - component: {fileID: 238284092090266560}
   - component: {fileID: 238284092090266563}
-  m_Layer: 0
+  - component: {fileID: 115505830013006802}
+  m_Layer: 8
   m_Name: Agent
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -107,6 +108,7 @@ MonoBehaviour:
   runningSpeed: 5
   upPos: {fileID: 238284094021088797}
   downPos: {fileID: 238284093926708203}
+  room: {fileID: 0}
   idleTime: 2
   walkingTime: 9
   rotatingTime: 5
@@ -179,6 +181,22 @@ PolygonCollider2D:
       - {x: 0, y: 0}
       - {x: 2.57, y: 2.57}
       - {x: 0, y: 3.6}
+--- !u!58 &115505830013006802
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238284092090266564}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.55
 --- !u!1 &238284092153641387
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,6 +207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 238284092153641380}
   - component: {fileID: 238284092153641381}
+  - component: {fileID: 5398407223693321070}
   m_Layer: 0
   m_Name: Security Light
   m_TagString: Untagged
@@ -263,6 +282,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5398407223693321070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238284092153641387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd0a1cecef6a94a4a9f2c1bf6102729a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 238284093771721914}
 --- !u!1 &238284092754507727
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,6 +550,7 @@ GameObject:
   m_Component:
   - component: {fileID: 238284093139905634}
   - component: {fileID: 238284093139905635}
+  - component: {fileID: 171282627375825554}
   m_Layer: 0
   m_Name: Agent Light
   m_TagString: Untagged
@@ -592,6 +625,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &171282627375825554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238284093139905633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd0a1cecef6a94a4a9f2c1bf6102729a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 238284092090266565}
 --- !u!1 &238284093648496385
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,7 +706,8 @@ GameObject:
   - component: {fileID: 238284093771721908}
   - component: {fileID: 238284093771721915}
   - component: {fileID: 238284093771721914}
-  m_Layer: 0
+  - component: {fileID: 5769832377233423149}
+  m_Layer: 8
   m_Name: Security
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -821,12 +868,29 @@ MonoBehaviour:
   runningSpeed: 6
   upPos: {fileID: 238284094021088797}
   downPos: {fileID: 238284093926708203}
+  room: {fileID: 0}
   idleTime: 2
   walkingTime: 9
   rotatingTime: 5
   attackModeTime: 7
   timeBetweenShots: 0.8
   beat: {fileID: 238284092903810599}
+--- !u!58 &5769832377233423149
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238284093771721912}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.53
 --- !u!1 &238284093793607221
 GameObject:
   m_ObjectHideFlags: 0
@@ -837,6 +901,7 @@ GameObject:
   m_Component:
   - component: {fileID: 238284093793607222}
   - component: {fileID: 238284093793607223}
+  - component: {fileID: 4823622556059775541}
   m_Layer: 0
   m_Name: Commando Light
   m_TagString: Untagged
@@ -911,6 +976,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4823622556059775541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238284093793607221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd0a1cecef6a94a4a9f2c1bf6102729a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 238284093814167162}
 --- !u!1 &238284093814167043
 GameObject:
   m_ObjectHideFlags: 0
@@ -925,7 +1003,8 @@ GameObject:
   - component: {fileID: 238284093814167166}
   - component: {fileID: 238284093814167165}
   - component: {fileID: 238284093814167162}
-  m_Layer: 0
+  - component: {fileID: 2044397665518820641}
+  m_Layer: 8
   m_Name: Commando
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1084,6 +1163,7 @@ MonoBehaviour:
   runningSpeed: 4
   upPos: {fileID: 238284094021088797}
   downPos: {fileID: 238284093926708203}
+  room: {fileID: 0}
   idleTime: 2
   walkingTime: 9
   rotatingTime: 5
@@ -1091,6 +1171,22 @@ MonoBehaviour:
   timeBetweenShots: 7
   target: {fileID: 238284092754507721}
   grenade: {fileID: 4288540832708839495, guid: 0c769a735abd80741813879c6c342990, type: 3}
+--- !u!58 &2044397665518820641
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238284093814167043}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.55
 --- !u!1 &238284093926708202
 GameObject:
   m_ObjectHideFlags: 0

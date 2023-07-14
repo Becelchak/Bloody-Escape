@@ -7,15 +7,12 @@ using UnityEngine.SceneManagement;
 
 public class Menu_in_game : MonoBehaviour
 {
-    private CanvasGroup thisGroup;
-    private CanvasGroup infoGroup;
+    public CanvasGroup thisGroup;
+    public CanvasGroup infoGroup;
     public GameObject player;
     
     void Start()
     {
-        thisGroup = transform.Find("MainMenu").GetComponent<CanvasGroup>();
-        infoGroup = transform.Find("InfoMenu").GetComponent<CanvasGroup>();
-
         player.GetComponent<Player_Control>().ChangeMenuNow(thisGroup);
     }
 

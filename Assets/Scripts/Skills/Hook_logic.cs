@@ -55,5 +55,6 @@ public class Hook_logic : MonoBehaviour
     public void ActiveHook()
     {
         isActive = true;
+        Physics2D.IgnoreLayerCollision(8, 9, false);
     }
 }

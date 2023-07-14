@@ -13,6 +13,7 @@ public enum EnemyType
 public class Enemy_parameter : MonoBehaviour
 {
     [SerializeField] private EnemyType type;
+    public SpriteRenderer sprite { get; private set; }
 
     [Header("Physics")]
     [SerializeField] private float rotationSpeed;
@@ -23,6 +24,7 @@ public class Enemy_parameter : MonoBehaviour
     private int rotationAngle;
     protected float newAngle;
     protected Rigidbody2D rigidBody;
+    [SerializeField] private Room room;
 
     [Header("States")]
     [SerializeField] private float idleTime;
@@ -40,6 +42,7 @@ public class Enemy_parameter : MonoBehaviour
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     void Start()
@@ -49,6 +52,7 @@ public class Enemy_parameter : MonoBehaviour
         stateChangeTimer = idleTime;
         attackModeTimer = attackModeTime;
         nextEdgePos = upPos.localPosition;
+        transform.localPosition = downPos.localPosition;
     }
     
     public bool EnemyAlive()
@@ -56,7 +60,7 @@ public class Enemy_parameter : MonoBehaviour
         return isAlive;
     }
 
-    public bool canBeDevoured()
+    public bool CanBeDevoured()
     {
         return isAlive && (type != EnemyType.Security || type == EnemyType.Security && Player_Control.GetBiomassSize() > 0.5f);
     }
@@ -64,6 +68,13 @@ public class Enemy_parameter : MonoBehaviour
     public void ChangeLiveStatus()
     {
         isAlive = !isAlive;
+        if (!isAlive)
+            Clear();
+    }
+
+    public void Clear()
+    {
+        room.ClearFromEnemy();
     }
 
     protected void MoveByState()
@@ -94,7 +105,7 @@ public class Enemy_parameter : MonoBehaviour
                 Rotate();
                 break;
             case EnemyState.Attacking:
-                if (!Player_Control.isHiding)
+                if (!Player_Control.isInvisible)
                 {
                     isPlayerDetected = !Player_Control.isDead;
                     Move(runningSpeed, Player_Control.GetPosition(), transform.position);
@@ -189,7 +200,7 @@ public class Enemy_parameter : MonoBehaviour
 
     protected void HandleAttack()
     {
-        if (state == EnemyState.Attacking && !Player_Control.isHiding)
+        if (state == EnemyState.Attacking && !Player_Control.isInvisible)
         {
             if (timerBetweenShots <= 0)
             {
@@ -206,6 +217,8 @@ public class Enemy_parameter : MonoBehaviour
     protected virtual void Attack() {}
 
     protected virtual void Escape() {}
+
+    protected virtual void Respawn() {}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

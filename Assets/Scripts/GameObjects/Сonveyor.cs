@@ -39,7 +39,7 @@ public class Сonveyor : MonoBehaviour
             //speedRotate = (float)Math.Ceiling(Random.Range(2f, 4f));
         }
 
-        if(isObjectContain && ObjectForMove.GetComponent<Rigidbody2D>() != null)
+        if(isObjectContain && ObjectForMove != null && ObjectForMove.tag == "Player" && ObjectForMove.GetComponent<Rigidbody2D>() != null)
         {
             switch (direction)
             {
