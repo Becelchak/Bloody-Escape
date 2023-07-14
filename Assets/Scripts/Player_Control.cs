@@ -142,7 +142,7 @@ public class Player_Control : MonoBehaviour
         var moveHorizontal = Input.GetAxis("Horizontal");
         var moveVertical = Input.GetAxis("Vertical");
 
-        controller.velocity = !isAbleToMove ? new Vector2(moveHorizontal * speed, moveVertical * speed) : Vector2.zero;
+        controller.velocity = isAbleToMove ? new Vector2(moveHorizontal * speed, moveVertical * speed) : Vector2.zero;
 
     }
 
