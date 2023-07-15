@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9484c29281e3be54ab16cb83ad55e510
+guid: ab1d9da3c68304f499408ff96ef2b1c5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 62
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -67,10 +67,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -165,13 +165,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TilesetTest_0
+      name: newtiles_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 65
-        width: 62
-        height: 62
+        x: 0
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,20 +179,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1b48bcd44e96eb84ca97654b49a5be7f
-      internalID: -993549119
+      spriteID: 5cdf8e29e63ae2b42904a30591970440
+      internalID: -614195228
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TilesetTest_1
+      name: newtiles_1
       rect:
         serializedVersion: 2
-        x: 65
-        y: 65
-        width: 62
-        height: 62
+        x: 64
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,20 +200,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fedb758d5f597c941a2753e478d40b8a
-      internalID: 1915059700
+      spriteID: e9137b7801dde214bbf0cc6062026217
+      internalID: 422355399
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TilesetTest_2
+      name: newtiles_2
       rect:
         serializedVersion: 2
-        x: 129
-        y: 65
-        width: 62
-        height: 62
+        x: 128
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,20 +221,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f82b081544ddbb04f97dc7c06da094a4
-      internalID: -1952171742
+      spriteID: 8724a9e9e37db1c46bd7243b8ed87e13
+      internalID: 739260816
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TilesetTest_3
+      name: newtiles_3
       rect:
         serializedVersion: 2
-        x: 193
-        y: 65
-        width: 62
-        height: 62
+        x: 192
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -242,20 +242,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 80897332fd0eb0743b4b7e364849711a
-      internalID: 1784434076
+      spriteID: 0a6ddcc62368e154b863eaaf9c8a21aa
+      internalID: -1350817884
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TilesetTest_4
+      name: newtiles_4
       rect:
         serializedVersion: 2
-        x: 257
-        y: 65
-        width: 62
-        height: 62
+        x: 256
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -263,20 +263,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2533aa7c816cfec448a1fb22ff124001
-      internalID: -259845815
+      spriteID: fba42e445e762404f95ebbb3d78fcb69
+      internalID: 233257392
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TilesetTest_5
+      name: newtiles_5
       rect:
         serializedVersion: 2
-        x: 321
-        y: 65
-        width: 62
-        height: 62
+        x: 0
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -284,20 +284,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c92fcc6b623fc9941b4f0a8f08b6a888
-      internalID: 1464984151
+      spriteID: 53be500fe1ed49d48aef73066ba0c17d
+      internalID: 1806065657
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TilesetTest_6
+      name: newtiles_6
       rect:
         serializedVersion: 2
-        x: 385
-        y: 65
-        width: 62
-        height: 62
+        x: 64
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -305,20 +305,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29484defdfc929e43b0398c3fd1a0dab
-      internalID: 1936012903
+      spriteID: eeec331df86adb14ea38a6a27c0cba5c
+      internalID: 713626024
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TilesetTest_7
+      name: newtiles_7
       rect:
         serializedVersion: 2
-        x: 1
-        y: 1
-        width: 62
-        height: 62
+        x: 128
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -326,20 +326,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aef4e04dcefb4d5479f8758fff37da52
-      internalID: 330387666
+      spriteID: 91f721323cfd8ec429055217ae333164
+      internalID: -1420999738
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TilesetTest_8
+      name: newtiles_8
       rect:
         serializedVersion: 2
-        x: 65
-        y: 1
-        width: 62
-        height: 62
+        x: 192
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -347,20 +347,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64b7327a50028b243817c5dfea24192e
-      internalID: -20414670
+      spriteID: abc481ee2aaf43a4dbec175b2d2c1a94
+      internalID: 1534773531
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TilesetTest_9
+      name: newtiles_9
       rect:
         serializedVersion: 2
-        x: 129
-        y: 1
-        width: 62
-        height: 62
+        x: 256
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -368,20 +368,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dfa134c19f21e3c45bbacfeacc2679fc
-      internalID: 1233261789
+      spriteID: 88fbfa56de79a79459f1b4897552fa82
+      internalID: 1375026451
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TilesetTest_10
+      name: newtiles_10
       rect:
         serializedVersion: 2
-        x: 193
-        y: 1
-        width: 62
-        height: 62
+        x: 320
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -389,8 +389,176 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1cdea2c0965d56540afd0ab781b44b91
-      internalID: -84395524
+      spriteID: 5c47b0e9d21a19c4eb57da197a19d003
+      internalID: -1005800515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newtiles_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51f653476e3384c4fa5aca91ffe0c6af
+      internalID: -455528917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newtiles_12
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e61ac45c8a493b143b6155dd4ec7400b
+      internalID: -1911326475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newtiles_13
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4e5d708a5a9d3e4e887aa1ec572732d
+      internalID: 1127236691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newtiles_14
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f15431be2400bf84eaed952c0571f8ef
+      internalID: 187282503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newtiles_15
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c39c22f78f02cb040aed821fc7dec73e
+      internalID: -115299192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newtiles_16
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8f773b6aeff5f649a776f1626fa4d6c
+      internalID: 492628372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newtiles_17
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 995c747dd15302343978b58493c5fcc6
+      internalID: -1059893162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newtiles_18
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a72fb1765c43d049a1dac0ae8870d1a
+      internalID: -1743576397
       vertices: []
       indices: 
       edges: []
@@ -406,17 +574,25 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      TilesetTest_1: 1915059700
-      TilesetTest_9: 1233261789
-      TilesetTest_7: 330387666
-      TilesetTest_2: -1952171742
-      TilesetTest_6: 1936012903
-      TilesetTest_3: 1784434076
-      TilesetTest_8: -20414670
-      TilesetTest_10: -84395524
-      TilesetTest_0: -993549119
-      TilesetTest_4: -259845815
-      TilesetTest_5: 1464984151
+      newtiles_1: 422355399
+      newtiles_17: -1059893162
+      newtiles_6: 713626024
+      newtiles_14: 187282503
+      newtiles_2: 739260816
+      newtiles_4: 233257392
+      newtiles_3: -1350817884
+      newtiles_18: -1743576397
+      newtiles_15: -115299192
+      newtiles_9: 1375026451
+      newtiles_5: 1806065657
+      newtiles_8: 1534773531
+      newtiles_16: 492628372
+      newtiles_10: -1005800515
+      newtiles_13: 1127236691
+      newtiles_11: -455528917
+      newtiles_7: -1420999738
+      newtiles_12: -1911326475
+      newtiles_0: -614195228
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
