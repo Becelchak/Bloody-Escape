@@ -6,6 +6,7 @@ public class Room : MonoBehaviour
 {
     public int enemiesCount;
     public GameObject[] doors;
+    public EnemyTypeRandomizing[] randomizers;
 
     public Skill_randomization skill;
     private bool isVisited = false;
@@ -27,6 +28,8 @@ public class Room : MonoBehaviour
         {
             isVisited = true;
             skill.Dice();
+            foreach (var randomer in randomizers)
+                randomer.Randomize();
         }
     }
 }

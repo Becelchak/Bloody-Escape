@@ -28,6 +28,7 @@ public class Skill_randomization : MonoBehaviour
     public AudioClip diceRoll;
 
     public Animator diceAnimator;
+    public SpriteRenderer diceRenderer;
     public float animationTime;
     private float animationTimer;
     public bool start;
@@ -37,20 +38,32 @@ public class Skill_randomization : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (start)
-        {
+        //if (start)
+        //{
 
-            Debug.LogError("Start log");
-            if (animationTimer <= 0)
-            {
-                Player_Control.isAbleToMove = true;
-                diceAnimator.SetBool("start", false);
-                start = false;
-                ShowAttack();
-            }
-            else
-                animationTimer -= Time.deltaTime;
+        //    Debug.LogError("Start log");
+        //    if (animationTimer <= 0)
+        //    {
+        //        Player_Control.isAbleToMove = true;
+        //        diceAnimator.speed = 0;
+        //        diceRenderer.enabled = false;
+        //        start = false;
+        //        ShowAttack();
+        //    }
+        //    else
+        //        animationTimer -= Time.deltaTime;
+        //}
+
+        if (animationTimer <= 0)
+        {
+            Player_Control.isAbleToMove = true;
+            diceAnimator.speed = 0;
+            diceRenderer.enabled = false;
+            start = false;
+            ShowAttack();
         }
+        else
+            animationTimer -= Time.deltaTime;
     }
 
     public string GetSpecialSkillName()
@@ -66,18 +79,20 @@ public class Skill_randomization : MonoBehaviour
     // Bug source
     public void Dice()
     {
-        Debug.LogError("Dice log");
+        //Debug.LogError("Dice log");
         skillNumber = Random.Range(1, maxSkillOnLevel + 1);
-        //diceAnimator.SetFloat("Attack", skillNumber);
-        //diceAnimator.SetBool("start", true);
-        //animationTimer = animationTime;
+        //these three operations can cause error in the build of this game
+        diceAnimator.SetFloat("Attack", skillNumber);
+        diceAnimator.speed = 1;
+        diceRenderer.enabled = true;
+        animationTimer = animationTime;
         Player_Control.isAbleToMove = false;
         start = true;
     }
 
     private void ShowAttack()
     {
-        Debug.Log("Show log");
+        //Debug.Log("Show log");
         switch (skillNumber)
         {
             // Spikes

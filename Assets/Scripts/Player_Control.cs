@@ -55,7 +55,7 @@ public class Player_Control : MonoBehaviour
     private bool isCooldown;
     // Special skill
     private bool isSpecialCoolDown;
-    private float specialCoolDownTime = 1f;
+    private float specialCoolDownTime = 20f;
     // Special skill climbing
     private float stealthCoolDownTime = 10f;
     // Immortal
